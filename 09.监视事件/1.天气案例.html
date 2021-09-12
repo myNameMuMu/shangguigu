@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h2>今天天气炎热{{info}}</h2>
+        <button @click="changeWeather">切换天气</button>
+    </div>
+    <script>
+        Vue.config.productionTip = false//组织vue在启动是生成生产提示
+        new Vue({
+            el: '#root',
+            data: {
+                isHot: true
+            },
+            computed: {
+                // 直接当做普通属性调用不加括号
+                // 任何data中数据变化立即重新计算
+                // 计算属性会缓存
+
+                info() {
+                    return this.isHot ? '炎热' : '凉爽'
+                }
+            },
+            methods: {
+                changeWeather() {
+                    return this.isHot = !this.isHot
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

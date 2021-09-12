@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 导入vue插件 -->
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h1>Hllo,{{name}}</h1>
+    </div>
+    <script>
+        Vue.config.productionTip = false //设置为 false 以阻止 vue 在启动时生成生产提示。
+        // 创建vue实例
+        new Vue({
+            el:'#root',//el用于指定当前Vue实力为那个容器服务，值通常为css选择器字符
+            data:{//data中用于储存数据，数据供el所指定的容器去使用，值我们暂时先写成一个对象
+                name:'大傻逼'
+            }
+        })
+    </script>
+</body>
+
+</html>

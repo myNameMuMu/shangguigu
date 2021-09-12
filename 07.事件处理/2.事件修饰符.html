@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+    <style>
+        * {
+            margin: 20px;
+        }
+
+        .box,
+        .box1 {
+            background-color: skyblue;
+            width: 400px;
+            height: 400px;
+            padding: 10px;
+        }
+
+        .box a,
+        .box2 {
+            display: block;
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Vue中的事件修饰符：
+            1.prevent:阻止冒泡默认事件(常用)；
+            2.stop：阻止事件冒泡（常用）；
+            3.once：事件只触发一次（常用）；
+            4.capture：使用事件的捕获模式；
+            5.self：只有event.target是操作的元素是才触发事件；
+            6.passive：事件默认行为立即执行，无需等待事件回调执行完毕；
+     -->
+    <div id="root">
+        <h2>欢迎来{{name}}到学习</h2>
+        <!-- 组织默认行为 -->
+        <a href="http://www.atguigu.com" @click.prevent="showInfo">组织默认行为</a>
+        <!-- 组织冒泡 -->
+        <div class="box" @click="showInfo">
+            <a href="javascript:;" @click.stop="showInfo2">组织冒泡</a>
+        </div>
+        <!-- 事件只能触发一次 -->
+        <button @click.once="showInfo">只会被触发一次</button>
+        <!-- 事件的捕获默认 -->
+        <div class="box1" @click.capture="showMsg(1)">
+            div1
+            <div class="box2" @click="showMsg(2)">
+                div2
+            </div>
+        </div>
+
+
+    </div>
+    <script>
+        Vue.config.productionTip = false   //组织vue在启动是生成生产提示
+        new Vue({
+            el: '#root',
+            data: {
+                name: '黑马程序'
+            },
+            methods: {
+                showInfo(e) {
+                    // e.preventDefault()
+
+                    alert(11)
+
+                },
+                showInfo2(e) {
+                    // e.stopPropagation()
+                    alert(22)
+                },
+                showMsg(a) {
+                    console.log(a);
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>
