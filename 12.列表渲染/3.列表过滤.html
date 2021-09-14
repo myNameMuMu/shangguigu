@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+
+    <div id="root">
+        <h2>人员列表</h2>
+        <input type="text" placeholder="请输入搜索的姓名" v-model="keyWord">
+        <ul>
+            <!-- <li v-for="p in persons" :key="p.id"> -->
+            <li v-for="p,index in filPersons" :key="index">
+                {{p.name}}-----{{p.age}}
+            </li>
+        </ul>
+    </div>
+    <script>
+        Vue.config.productionTip = false//组织vue在启动是生成生产提示
+        /* new Vue({
+            el: "#root",
+            data: {
+                keyWord: '',
+                persons: [
+                    { id: 1, name: '马冬梅', age: 18 },
+                    { id: 2, name: '周冬雨', age: 20 },
+                    { id: 3, name: '周杰伦', age: 25 },
+                    { id: 4, name: '温兆伦', age: 25 }
+                ],
+                filPersons: []
+            },
+            watch: {
+                keyWord: {
+                    immediate: true,//初识化时让handler调用一下
+                    handler(val) {
+                        this.filPersons = this.persons.filter((p) => {
+                            return p.name.indexOf(val) !== -1
+                        })
+                    }
+                }
+            }
+        }) */
+        new Vue({
+            el: "#root",
+            data: {
+                keyWord: '',
+                persons: [
+                    { id: 1, name: '马冬梅', age: 18 },
+                    { id: 2, name: '周冬雨', age: 20 },
+                    { id: 3, name: '周杰伦', age: 25 },
+                    { id: 4, name: '温兆伦', age: 25 }
+                ],
+
+            },
+            computed: {
+                filPersons() {
+                    return this.persons.filter((p) => {
+                        return p.name.indexOf(this.keyWord) !== -1
+                    })
+                }
+            }
+
+        })
+
+    </script>
+</body>
+
+</html>

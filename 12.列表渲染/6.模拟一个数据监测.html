@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h2></h2>
+    </div>
+    <script>
+        let data = {
+            name: '尚硅谷',
+            address: "北京"
+        }
+        const obs = new Observer(data)
+        function Observer(obj) {
+            const keys = Object.keys(obj)
+            keys.forEach((k) => {
+                Object.defineProperty(this, k, {
+                    get() {
+                        return obj[k]
+                    },
+                    set(val) {
+                        obj[k] = val
+                    }
+                })
+            })
+        }
+    </script>
+</body>
+
+</html>
