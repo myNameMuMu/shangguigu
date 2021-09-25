@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+
+    </div>
+    <script>
+        Vue.config.productionTip = false//组织vue在启动是生成生产提示
+        // 定义student组件
+        const student = Vue.extend({
+            template: `
+                <div>
+                    <h2>学校名称：{{name}}</h2>    
+                    <h2>学校地址：{{age}}</h2>    
+                </div>
+            `,
+            data() {
+                return {
+                    name: '曹少爷',
+                    age: 28
+                }
+            }
+        })
+        //定义school组件
+        const school = Vue.extend({
+            template: `
+                <div>
+                    <h2>学校名称：{{name}}</h2>    
+                    <h2>学校地址：{{address}}</h2>    
+                    <student></student>
+                </div>
+            `,
+            data() {
+                return {
+                    name: '尚硅谷',
+                    address: '北京顺义'
+                }
+            },
+            components: {
+                student
+            }
+        })
+        // 定义hello组件
+        const hello = Vue.extend({
+            template: `
+                <h2>{{msg}}</h2>
+            `,
+            data() {
+                return {
+                    msg: 'hello!!黑马欢迎你'
+                }
+            }
+        })
+        //定义app管理组件
+        const app = Vue.extend({
+            template: `
+                <div>
+                    <hello/>
+                    <school/>    
+                </div>
+            `,
+            components: {
+                hello,
+                school
+            }
+        })
+        const vm = new Vue({
+            template:`
+            <div>
+                <app></app>    
+            </div>
+            `,
+            el: '#root',
+            data: {
+                name: ''
+            },
+            components: {
+                app
+            }
+        })
+    </script>
+</body>
+
+</html>

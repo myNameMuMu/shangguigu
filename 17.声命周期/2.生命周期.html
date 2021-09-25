@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+
+    <div id="root">
+        <h2>{{n}}</h2>
+        <button @click="sum">n++</button>
+        <button @click='bay'>销毁vm</button>
+    </div>
+    <script>
+        Vue.config.productionTip = false//组织vue在启动是生成生产提示
+        new Vue({
+            el: '#root',
+            data: {
+                n: 0,
+            },
+            methods: {
+                sum() {
+                    this.n++
+                },
+                bay() {
+                    this.$destroy()
+                }
+            },
+            //初始化之前
+            beforeCreate() {
+                console.log('beforeCreate' + '-------------初始化之前');
+                console.log(this);
+                debugger
+            },
+            //初始化之后
+            created() {
+                console.log('created' + '--------------初始化之后');
+                console.log(this);
+            },
+            //挂载之前
+            beforeMount() {
+                console.log('beforeMount' + '-------------挂载之前');
+                console.log(this);
+            },
+            //挂载之后
+            mounted() {
+                console.log('mounted' + "--------------------------------挂载之后");
+                console.log(this);
+            },
+            //更新之前
+            beforeUpdate() {
+                console.log("beforUpdate" + '----------------------更新之前');
+                console.log(this);
+            },
+            //更新之后
+            updated() {
+                console.log('updated' + '--------------------更新之后');
+                console.log(this);
+            },
+            //销毁之前
+            beforeDestroy() {
+                console.log('beforeDestroy' + '-------------销毁之前');
+                console.log(this);
+            },
+            // 销毁之后
+            destroyed() {
+                console.log('destroyed' + '---------------销毁之后');
+                console.log(this);
+            },
+
+        })
+    </script>
+</body>
+
+</html>

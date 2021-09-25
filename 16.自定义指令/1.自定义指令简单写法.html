@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h2>点击后的内容<span v-text='n'></span></h2>
+        <h2>n乘以十后：<span v-big='n'></span></h2>
+        <button @click="n++">点我n++</button>
+    </div>
+    <script>
+        Vue.config.productionTip = false//组织vue在启动是生成生产提示
+        new Vue({
+            el: '#root',
+            data: {
+                n: 1
+            },
+            directives: {
+                big(element, binding) {
+                    //big函数饿汉式会被调用？ 1.指令于元素成功绑定是（一上来）。 2.指令所在的模板被重新解析时。
+                    element.innerText = binding.value * 10
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

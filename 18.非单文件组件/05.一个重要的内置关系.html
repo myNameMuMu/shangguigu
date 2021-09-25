@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <!-- 
+        1.一个重要的内置关系：VueComponent.prototype.__proto__===Vue.prototype
+        2.为什么要有这个关系：让组件实例对象（vc）可以访问到Vue原型上的属性，方法。
+ -->
+    <div id="root">
+        <school>
+        </school>
+    </div>
+    <script>
+        Vue.config.productionTip = false//组织vue在启动是生成生产提示
+        Vue.prototype.x = 5
+        const school = Vue.extend({
+            template: `
+                <div>
+                    <h3>学校名称：{{name}}</h3>
+                    <h3>学校地址：{{address}}</h3>
+                    <button @click='fn'>点击获取Vue的原型对象x</button>
+                </div>
+            `,
+            data() {
+                return {
+                    name: '创智博客',
+                    address: '北京顺义',
+                }
+            },
+            methods: {
+                fn() {
+                    console.log(this.x);
+                }
+            },
+        })
+
+        const vm = new Vue({
+            el: '#root',
+            data: {
+                name: ''
+            },
+            components: {
+                school,
+            },
+
+        })
+
+
+    </script>
+</body>
+
+</html>
